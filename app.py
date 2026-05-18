@@ -5,19 +5,17 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-# ==========================================
+
 # CONFIGURE LANGCHAIN + GEMINI
-# ==========================================
 load_dotenv()
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
     google_api_key=os.getenv("GOOGLE_API_KEY"),
-    temperature=0
+    temperature= 0
 )
 
-# ==========================================
+
 # LOAD DATASET
-# ==========================================
 
 df = pd.read_excel("data/Enhanced_pizza_sell_data_2024-25.xlsx")
 
@@ -25,10 +23,8 @@ print("\n✅ Dataset Loaded Successfully!")
 print(f"   Rows: {len(df)} | Columns: {len(df.columns)}")
 print(f"   Columns: {list(df.columns)}\n")
 
-# ==========================================
-# PROMPT 1: NATURAL LANGUAGE → PANDAS QUERY
-# ==========================================
 
+# PROMPT 1: NATURAL LANGUAGE → PANDAS QUERY
 query_prompt = PromptTemplate(
     input_variables=["columns", "question"],
     template="""
@@ -50,10 +46,8 @@ User Question: {question}
 """
 )
 
-# ==========================================
-# PROMPT 2: RESULT → BUSINESS INSIGHT
-# ==========================================
 
+# PROMPT 2: RESULT → BUSINESS INSIGHT
 insight_prompt = PromptTemplate(
     input_variables=["question", "result"],
     template="""
@@ -69,10 +63,8 @@ Focus on what this means for the business.
 """
 )
 
-# ==========================================
-# BUILD CHAINS (LCEL style)
-# ==========================================
 
+# BUILD CHAINS (LCEL style)
 query_chain = query_prompt | llm | StrOutputParser()
 insight_chain = insight_prompt | llm | StrOutputParser()
 
@@ -81,7 +73,7 @@ insight_chain = insight_prompt | llm | StrOutputParser()
 # ==========================================
 
 print("=" * 50)
-print("   🍕 GenAI Pizza Sales Data Query Assistant")
+print("  GenAI Query Assistant")
 print("=" * 50)
 print("Type 'exit' to quit.\n")
 

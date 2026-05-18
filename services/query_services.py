@@ -5,9 +5,9 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-# ==========================================
+
 # CONFIGURE LANGCHAIN + GEMINI
-# ==========================================
+
 load_dotenv()
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
@@ -15,9 +15,9 @@ llm = ChatGoogleGenerativeAI(
     temperature=0
 )
 
-# ==========================================
+
 # PROMPT 1: NATURAL LANGUAGE → PANDAS QUERY
-# ==========================================
+
 
 query_prompt = PromptTemplate(
     input_variables=["columns", "question"],
@@ -40,9 +40,9 @@ User Question: {question}
 """
 )
 
-# ==========================================
+
 # PROMPT 2: RESULT → BUSINESS INSIGHT
-# ==========================================
+
 
 insight_prompt = PromptTemplate(
     input_variables=["question", "result"],
@@ -59,16 +59,16 @@ Focus on what this means for the business.
 """
 )
 
-# ==========================================
+
 # BUILD CHAINS
-# ==========================================
+
 
 query_chain = query_prompt | llm | StrOutputParser()
 insight_chain = insight_prompt | llm | StrOutputParser()
 
-# ==========================================
+
 # MAIN FUNCTION
-# ==========================================
+
 
 def run_query(file_path: str, question: str):
 

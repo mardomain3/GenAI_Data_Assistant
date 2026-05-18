@@ -8,9 +8,9 @@ from services.query_services import run_query, get_columns
 
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-# ==========================================
+
 # FASTAPI APP
-# ==========================================
+
 
 app = FastAPI(
     title="GenAI Query Assistant",
@@ -31,15 +31,15 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# ==========================================
+
 # STORE UPLOADED FILE PATHS
-# ==========================================
+
 
 file_store = {}  # { file_id: file_path }
 
-# ==========================================
+
 # UPLOAD ENDPOINT
-# ==========================================
+
 
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
@@ -64,9 +64,9 @@ async def upload_file(file: UploadFile = File(...)):
         "filename": file.filename
     }
 
-# ==========================================
+
 # GET COLUMNS ENDPOINT
-# ==========================================
+
 
 @app.get("/columns/{file_id}")
 def columns(file_id: str):
@@ -81,9 +81,9 @@ def columns(file_id: str):
         "columns": cols
     }
 
-# ==========================================
+
 # QUERY ENDPOINT
-# ==========================================
+
 
 class QueryRequest(BaseModel):
     file_id: str
