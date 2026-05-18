@@ -13,7 +13,7 @@ from fastapi.responses import FileResponse
 # ==========================================
 
 app = FastAPI(
-    title="GenAI Pizza Sales Query Assistant",
+    title="GenAI Query Assistant",
     description="Upload an Excel dataset and ask natural language questions",
     version="1.0.0"
 )
