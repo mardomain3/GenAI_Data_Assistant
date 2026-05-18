@@ -1,4 +1,4 @@
-# 🍕 GenAI Pizza Sales Data Query Assistant
+# GenAI Data Query Assistant
 
 A GenAI-powered Data Query Assistant built with Python, FastAPI, LangChain, and Google Gemini.
 
