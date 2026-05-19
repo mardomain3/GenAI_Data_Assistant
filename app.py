@@ -109,7 +109,8 @@ while True:
         print("Query Result:")
         print(display_result)
         print()
-
+        #this this is for testing github
+        
         # --- Step 3: Generate business insight ---
         print("🔄 Generating business insight...\n")
 
