@@ -90,7 +90,7 @@ class QueryRequest(BaseModel):
     question: str
 
 @app.post("/query")
-def query(request: QueryRequest):
+def query(request: QueryRequest):  
 
     if request.file_id not in file_store:
         raise HTTPException(status_code=404, detail="File not found. Upload first.")

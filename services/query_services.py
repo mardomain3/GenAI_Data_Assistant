@@ -14,7 +14,7 @@ llm = ChatGoogleGenerativeAI(
     google_api_key=os.getenv("GOOGLE_API_KEY"),
     temperature=0
 )
-
+ 
 
 # PROMPT 1: NATURAL LANGUAGE → PANDAS QUERY
 
